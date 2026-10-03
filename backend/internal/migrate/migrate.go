@@ -64,7 +64,7 @@ func seed(db *sqlx.DB) error {
 		return err
 	}
 	if userCount == 0 {
-		hash, err := bcrypt.GenerateFromPassword([]byte("password123"), bcrypt.DefaultCost)
+		hash, err := bcrypt.GenerateFromPassword([]byte("s@ndsAdmin"), bcrypt.DefaultCost)
 		if err != nil {
 			return err
 		}
@@ -72,7 +72,7 @@ func seed(db *sqlx.DB) error {
 			INSERT INTO users (id, email, password_hash, name, role, is_active)
 			VALUES (?, ?, ?, ?, ?, 1)`,
 			"usr_admin_001",
-			"admin@sswindowtinting.com",
+			"admin@sswindowtinting.co.za",
 			string(hash),
 			"S&S Admin",
 			"admin",

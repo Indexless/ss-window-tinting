@@ -55,7 +55,7 @@ func main() {
 	})
 
 	log.Printf("S&S Window Tinting API listening on %s", cfg.Addr)
-	log.Printf("Dummy login: admin@sswindowtinting.com / password123")
+	log.Printf("Dummy login: admin@sswindowtinting.co.za / s@ndsAdmin")
 	if err := http.ListenAndServe(cfg.Addr, router); err != nil {
 		log.Fatal(err)
 	}

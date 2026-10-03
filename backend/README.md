@@ -15,8 +15,8 @@ API: `http://localhost:8080`
 
 | Field    | Value                       |
 |----------|-----------------------------|
-| Email    | `admin@sswindowtinting.com` |
-| Password | `password123`               |
+| Email    | `admin@sswindowtinting.co.za` |
+| Password | `s@ndsAdmin`                  |
 
 ## Endpoints
 
