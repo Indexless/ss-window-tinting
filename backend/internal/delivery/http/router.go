@@ -26,10 +26,16 @@ type Deps struct {
 	Portal         *usecase.PortalUseCase
 	CookieSecure   bool
 	FrontendOrigin string
+	CORSOrigins    []string
 	UploadDir      string
 }
 
 func NewRouter(deps Deps) http.Handler {
+	origins := deps.CORSOrigins
+	if len(origins) == 0 {
+		origins = []string{deps.FrontendOrigin, "http://localhost:5173", "http://127.0.0.1:5173"}
+	}
+
 	r := chi.NewRouter()
 	r.Use(chimw.RequestID)
 	r.Use(chimw.RealIP)
@@ -37,9 +43,10 @@ func NewRouter(deps Deps) http.Handler {
 	r.Use(chimw.Recoverer)
 	r.Use(chimw.Timeout(60 * time.Second))
 	r.Use(cors.Handler(cors.Options{
-		AllowedOrigins:   []string{deps.FrontendOrigin, "http://127.0.0.1:5173"},
+		AllowedOrigins:   origins,
 		AllowedMethods:   []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
-		AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type"},
+		AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type", "X-Requested-With"},
+		ExposedHeaders:   []string{"Content-Length"},
 		AllowCredentials: true,
 		MaxAge:           300,
 	}))

@@ -19,12 +19,14 @@ go run ./cmd/server
 
 ```bash
 cd frontend
+cp .env.example .env   # optional for local; leave VITE_API_BASE_URL empty
 npm run dev
 ```
 
 - Site: http://localhost:5173  
 - API: http://localhost:8080  
-- Admin: http://localhost:5173/login (`admin@sswindowtinting.com` / `password123`)
+- Admin: http://localhost:5173/?login=1 (`admin@sswindowtinting.com` / `password123`)
+- Locally the Vite proxy forwards `/api` and `/uploads` to the backend, so no frontend API URL is required until production.
 
 ## Architecture notes
 

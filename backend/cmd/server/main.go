@@ -50,6 +50,7 @@ func main() {
 		Portal:         portalUC,
 		CookieSecure:   cfg.CookieSecure,
 		FrontendOrigin: cfg.FrontendOrigin,
+		CORSOrigins:    cfg.CORSOrigins,
 		UploadDir:      cfg.UploadDir,
 	})
 

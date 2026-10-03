@@ -9,9 +9,9 @@ backend/uploads/
 .env
 .env.*
 !.env.example
+!**/.env.example
 backend/.env
 frontend/.env
-frontend/.env.*
 
 # Logs / OS / editor
 *.log
@@ -20,3 +20,6 @@ Thumbs.db
 .idea/
 .vscode/*
 !.vscode/extensions.json
+
+# Local Netlify folder
+.netlify
