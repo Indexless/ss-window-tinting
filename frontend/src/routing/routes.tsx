@@ -9,7 +9,11 @@ import { DashboardPage } from '../pages/admin/DashboardPage'
 import { UsersPage } from '../pages/admin/UsersPage'
 import { LeadsPage } from '../pages/admin/LeadsPage'
 import { GalleryPage } from '../pages/admin/GalleryPage'
-import { ConfigPage } from '../pages/admin/ConfigPage'
+import { ConfigLayout } from '../pages/admin/config/ConfigLayout'
+import { BusinessSettingsPage } from '../pages/admin/config/BusinessSettingsPage'
+import { FaqSettingsPage } from '../pages/admin/config/FaqSettingsPage'
+import { PoliciesSettingsPage } from '../pages/admin/config/PoliciesSettingsPage'
+import { FooterSettingsPage } from '../pages/admin/config/FooterSettingsPage'
 import { ProtectedRoute } from './ProtectedRoute'
 
 export function AppRoutes() {
@@ -29,7 +33,13 @@ export function AppRoutes() {
           <Route path="leads" element={<LeadsPage />} />
           <Route path="gallery" element={<GalleryPage />} />
           <Route path="users" element={<UsersPage />} />
-          <Route path="config" element={<ConfigPage />} />
+          <Route path="config" element={<ConfigLayout />}>
+            <Route index element={<Navigate to="business" replace />} />
+            <Route path="business" element={<BusinessSettingsPage />} />
+            <Route path="faq" element={<FaqSettingsPage />} />
+            <Route path="policies" element={<PoliciesSettingsPage />} />
+            <Route path="footer" element={<FooterSettingsPage />} />
+          </Route>
         </Route>
       </Route>
       <Route path="*" element={<NotFoundPage />} />

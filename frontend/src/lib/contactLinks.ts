@@ -17,6 +17,14 @@ export function mailtoHref(config: SiteConfig | null | undefined): string | null
 }
 
 export function instagramUrl(config: SiteConfig | null | undefined): string | null {
+  const fromSocial = config?.socialLinks?.find(
+    (link) => link.platform === 'instagram' && link.url.trim(),
+  )?.url
+  if (fromSocial) return fromSocial.trim()
   if (!config?.instagramHandle) return null
   return `https://instagram.com/${config.instagramHandle}`
+}
+
+export function activeSocialLinks(config: SiteConfig | null | undefined) {
+  return (config?.socialLinks ?? []).filter((link) => link.platform.trim() && link.url.trim())
 }

@@ -1,5 +1,6 @@
 import { images } from '../../config/images'
 import { Reveal } from '../ui/Reveal'
+import { SkeletonImage } from '../ui/SkeletonImage'
 
 const features = [
   { num: '01', title: 'Professional Installation' },
@@ -12,7 +13,7 @@ export function WhySS() {
   return (
     <section className="ss-why" aria-labelledby="why-heading">
       <div className="ss-why-media ss-media">
-        <img
+        <SkeletonImage
           src={images.whySs}
           alt="Professional window tinting installation"
           loading="lazy"

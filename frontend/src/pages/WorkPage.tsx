@@ -4,6 +4,7 @@ import { Footer } from '../components/layout/Footer'
 import { MobileCtaBar } from '../components/layout/MobileCtaBar'
 import { WhatsAppFloat } from '../components/contact/WhatsAppFloat'
 import { Reveal } from '../components/ui/Reveal'
+import { GallerySkeleton } from '../components/ui/GallerySkeleton'
 import { WorkGalleryGrid } from '../components/work/WorkGalleryGrid'
 import { usePublicGallery } from '../hooks/usePublicGallery'
 
@@ -19,11 +20,10 @@ export function WorkPage() {
             <Reveal>
               <p className="ss-eyebrow">Our Work</p>
               <h1 className="ss-display ss-display-lg">See the Difference.</h1>
-              <p className="ss-lead">Real projects. Real results.</p>
             </Reveal>
 
             {loading ? (
-              <p className="ss-muted-note mt-4 mb-0">Loading gallery…</p>
+              <GallerySkeleton />
             ) : (
               <WorkGalleryGrid items={gallery} />
             )}

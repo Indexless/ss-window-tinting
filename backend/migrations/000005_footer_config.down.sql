@@ -1,0 +1,11 @@
+ALTER TABLE site_config
+  DROP COLUMN footer_show_terms,
+  DROP COLUMN footer_show_cookies,
+  DROP COLUMN footer_show_privacy,
+  DROP COLUMN footer_navigate_json,
+  DROP COLUMN footer_services_json,
+  DROP COLUMN footer_connect_title,
+  DROP COLUMN footer_navigate_title,
+  DROP COLUMN footer_services_title,
+  DROP COLUMN footer_copyright,
+  DROP COLUMN footer_categories;

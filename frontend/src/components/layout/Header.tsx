@@ -12,7 +12,7 @@ const links = [
 ]
 
 export function Header() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
   const onHome = pathname === '/'
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
@@ -38,7 +38,17 @@ export function Header() {
     <>
       <header className={`ss-header ${scrolled ? 'is-scrolled' : ''}`}>
         <div className="ss-header-inner">
-          <Link className="ss-logo" to="/" onClick={close} aria-label="S&S Window Tinting home">
+          <Link
+            className="ss-logo"
+            to="/"
+            onClick={() => {
+              close()
+              if (onHome && !hash) {
+                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+              }
+            }}
+            aria-label="S&S Window Tinting home"
+          >
             <Logo />
           </Link>
 
@@ -67,6 +77,13 @@ export function Header() {
         </div>
       </header>
 
+      <button
+        type="button"
+        className={`ss-mobile-nav-backdrop ${open ? 'is-open' : ''}`}
+        aria-label="Close menu"
+        tabIndex={open ? 0 : -1}
+        onClick={close}
+      />
       <nav className={`ss-mobile-nav ${open ? 'is-open' : ''}`} aria-label="Mobile">
         {links.map((link) => (
           <a key={link.hash} href={hrefFor(link.hash)} onClick={close}>

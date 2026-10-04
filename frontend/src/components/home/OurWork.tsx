@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Reveal } from '../ui/Reveal'
+import { GallerySkeleton } from '../ui/GallerySkeleton'
 import { WorkGalleryGrid } from '../work/WorkGalleryGrid'
 import { usePublicGallery } from '../../hooks/usePublicGallery'
 
@@ -15,11 +16,10 @@ export function OurWork() {
         <Reveal>
           <p className="ss-eyebrow">Our Work</p>
           <h2 className="ss-display ss-display-lg">See the Difference.</h2>
-          <p className="ss-lead">Real projects. Real results.</p>
         </Reveal>
 
         {loading ? (
-          <p className="ss-muted-note mt-4 mb-0">Loading gallery…</p>
+          <GallerySkeleton />
         ) : (
           <WorkGalleryGrid items={preview} />
         )}

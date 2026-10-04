@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { SkeletonImage } from './SkeletonImage'
 
 type Props = {
   src: string
@@ -24,7 +25,7 @@ export function Lightbox({ src, alt, onClose }: Props) {
       <button type="button" className="ss-lightbox-close" aria-label="Close" onClick={onClose}>
         ✕
       </button>
-      <img src={src} alt={alt} onClick={(e) => e.stopPropagation()} />
+      <SkeletonImage src={src} alt={alt} onClick={(e) => e.stopPropagation()} />
     </div>
   )
 }

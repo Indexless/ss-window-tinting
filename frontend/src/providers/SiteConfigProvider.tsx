@@ -17,6 +17,8 @@ type SiteConfigContextValue = {
 
 const SiteConfigContext = createContext<SiteConfigContextValue | null>(null)
 
+const emptyPolicy = { title: '', updatedAt: '', body: '' }
+
 const fallbackConfig: SiteConfig = {
   businessName: 'S&S Window Tinting',
   tagline: 'Professional Window Tinting',
@@ -29,6 +31,32 @@ const fallbackConfig: SiteConfig = {
   seoTitle: 'S&S Window Tinting | Automotive, Commercial & Residential Window Tinting',
   seoDescription:
     'Professional window tinting for vehicles, homes and businesses. S&S Window Tinting provides quality automotive, commercial and residential window tinting services.',
+  footerCategories: 'Automotive / Commercial / Residential',
+  footerCopyright: '',
+  footerServicesTitle: 'Services',
+  footerNavigateTitle: 'Navigate',
+  footerConnectTitle: 'Connect',
+  footerServices: [
+    { label: 'Automotive', href: '/#services' },
+    { label: 'Commercial', href: '/#services' },
+    { label: 'Residential', href: '/#services' },
+  ],
+  footerNavigate: [
+    { label: 'Home', href: '/#home' },
+    { label: 'Services', href: '/#services' },
+    { label: 'Our Work', href: '/#work' },
+    { label: 'About', href: '/#about' },
+    { label: 'FAQ', href: '/#faq' },
+    { label: 'Contact', href: '/#contact' },
+  ],
+  footerShowPrivacy: true,
+  footerShowCookies: true,
+  footerShowTerms: true,
+  faq: [],
+  socialLinks: [],
+  policyPrivacy: emptyPolicy,
+  policyCookies: emptyPolicy,
+  policyTerms: emptyPolicy,
   updatedAt: '',
 }
 

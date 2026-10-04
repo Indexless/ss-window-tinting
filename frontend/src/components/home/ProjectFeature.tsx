@@ -1,11 +1,16 @@
 import { images } from '../../config/images'
 import { Reveal } from '../ui/Reveal'
+import { SkeletonImage } from '../ui/SkeletonImage'
 
 export function ProjectFeature() {
   return (
     <section className="ss-featured" aria-labelledby="featured-heading">
       <div className="ss-featured-media ss-media">
-        <img src={images.featured} alt="Premium vehicle with professional window tint" loading="lazy" />
+        <SkeletonImage
+          src={images.featured}
+          alt="Premium vehicle with professional window tint"
+          loading="lazy"
+        />
       </div>
       <div className="ss-featured-copy">
         <Reveal>

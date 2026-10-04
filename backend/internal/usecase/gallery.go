@@ -138,13 +138,37 @@ func (uc *GalleryUseCase) Delete(id string) error {
 	if err != nil {
 		return err
 	}
+	filePath := uc.resolveUploadFile(image.URL)
 	if err := uc.gallery.Delete(id); err != nil {
 		return err
 	}
-	if rel := localUploadPath(image.URL); rel != "" {
-		_ = os.Remove(filepath.Join(uc.uploadDir, filepath.FromSlash(rel)))
+	if filePath != "" {
+		if err := os.Remove(filePath); err != nil && !os.IsNotExist(err) {
+			return fmt.Errorf("image removed from gallery but file cleanup failed: %w", err)
+		}
 	}
 	return nil
+}
+
+func (uc *GalleryUseCase) resolveUploadFile(url string) string {
+	rel := localUploadPath(url)
+	if rel == "" {
+		return ""
+	}
+	root, err := filepath.Abs(uc.uploadDir)
+	if err != nil {
+		root = uc.uploadDir
+	}
+	full := filepath.Join(root, filepath.FromSlash(rel))
+	fullAbs, err := filepath.Abs(full)
+	if err != nil {
+		return ""
+	}
+	relToRoot, err := filepath.Rel(root, fullAbs)
+	if err != nil || strings.HasPrefix(relToRoot, "..") {
+		return ""
+	}
+	return fullAbs
 }
 
 func (uc *GalleryUseCase) withAbsoluteURLs(items []domain.GalleryImage) []domain.GalleryImage {

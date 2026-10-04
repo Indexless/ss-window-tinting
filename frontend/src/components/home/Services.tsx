@@ -1,5 +1,6 @@
 import { images } from '../../config/images'
 import { Reveal } from '../ui/Reveal'
+import { SkeletonImage } from '../ui/SkeletonImage'
 
 const services = [
   {
@@ -42,7 +43,7 @@ export function Services() {
         <div className="ss-service-grid">
           {services.map((service) => (
             <Reveal key={service.title} as="article" className="ss-service-card">
-              <img src={service.image} alt={service.alt} loading="lazy" />
+              <SkeletonImage src={service.image} alt={service.alt} loading="lazy" fill />
               <div className="ss-service-body">
                 <h3>{service.title}</h3>
                 <p>{service.copy}</p>

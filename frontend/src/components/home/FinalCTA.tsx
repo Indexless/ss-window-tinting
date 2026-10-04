@@ -1,5 +1,6 @@
 import { images } from '../../config/images'
 import { Reveal } from '../ui/Reveal'
+import { SkeletonImage } from '../ui/SkeletonImage'
 import { useSiteConfig } from '../../providers/SiteConfigProvider'
 import { whatsappUrl } from '../../lib/contactLinks'
 
@@ -10,7 +11,7 @@ export function FinalCTA() {
   return (
     <section className="ss-final" aria-labelledby="final-cta-heading">
       <div className="ss-final-media" aria-hidden="true">
-        <img src={images.finalCta} alt="" loading="lazy" />
+        <SkeletonImage src={images.finalCta} alt="" loading="lazy" fill />
         <div className="ss-final-overlay" />
       </div>
       <Reveal className="ss-final-content">

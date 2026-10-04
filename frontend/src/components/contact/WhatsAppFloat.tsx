@@ -14,6 +14,7 @@ export function WhatsAppFloat() {
   const { config } = useSiteConfig()
   const [open, setOpen] = useState(false)
   const [shown, setShown] = useState(false)
+  const [overFooter, setOverFooter] = useState(false)
   const panelId = useId()
   const wa = whatsappUrl(config)
 
@@ -34,7 +35,23 @@ export function WhatsAppFloat() {
     return () => window.removeEventListener('keydown', onKey)
   }, [open])
 
-  if (!wa) return null
+  useEffect(() => {
+    const footer = document.getElementById('ss-site-footer')
+    if (!footer) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const visible = Boolean(entry?.isIntersecting)
+        setOverFooter(visible)
+        if (visible) setOpen(false)
+      },
+      { root: null, threshold: 0.05 },
+    )
+    observer.observe(footer)
+    return () => observer.disconnect()
+  }, [])
+
+  if (!wa || overFooter) return null
 
   return (
     <div className={`ss-wa-float ${open ? 'is-open' : ''} ${shown ? 'is-shown' : ''}`}>
